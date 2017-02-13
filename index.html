@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Guessing Game</title>
+    <!-- Bootstrap and CSS here-->
+    <link rel="stylesheet" type="text/css" href="bootstrap-css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body id="body">
+    <!-- //can add background image here too  -->
+    <div id="app" class="center container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="headers">
+                    <h1 id="main-header">Play the Guessing Game!</h1>
+                    <h2 id="instructions">Guess a number between 1-100!</h2>
+                </div>
+                <div id="main">
+                    <div id="input-parent">
+                        <form>
+                            <input id="player-input" type="text" autofocus="autofocus" max="100" min="1" placeholder="#">
+                        </form>
+                        <button type="button" id="submit-guess-button" class="btn btn-success">Go!</button>
+                        <!-- Player"s guess input, and submit button -->
+                    </div>
+                    <div id="guesses">
+                        <ul id="guess-list">
+                            <li class="guess">-</li>
+                            <li class="guess">-</li>
+                            <li class="guess">-</li>
+                            <li class="guess">-</li>
+                            <li class="guess">-</li>
+                        </ul>
+                    </div>
+                    <div id="menu-btns">
+                        <button type="button" id="reset-button" class="btn btn-warning">Reset</button>
+                        <button type="button" id="hint-button" class="btn btn-info">Hint</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="center container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="fa-logo@2x.png"></img>
+            </div>
+            <div class="col-sm-4">
+                <h4 id="my-name">Project by Gabi Klapman</h4>
+            </div>
+            <div class="col-sm-4">
+                <img src="grace_hopper_academy.png"></img>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
