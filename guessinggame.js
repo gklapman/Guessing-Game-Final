@@ -46,14 +46,27 @@ Game.prototype.playersGuessSubmission = function(num) {
 
 Game.prototype.checkGuess = function() {
     if (this.playersGuess === this.winningNumber) {
+        $('#hint', '#submit').prop('disabled', true); //is disabled a built in feature?
+        $('#instructions').text("Press the Reset button to play again");
+        $("#main-header").text('You Win!');
         return "You Win!"
     } else if (this.pastGuesses.includes(this.playersGuess)) {
+        $('#instructions').text("Guess a different number");
         return 'You have already guessed that number.';
     } else {
         this.pastGuesses.push(this.playersGuess);
+         $('#guess-list li:nth-child('+ this.pastGuesses.length +')').text(this.playersGuess);
     }
     if (this.pastGuesses.length === 5) {
+        $('#hint', '#submit').prop('disabled', true);
+        $('#instructions').text("Press the Reset button to play again");
+        $("#main-header").text('You Win!');
         return "You Lose.";
+    if (this.isLower()){
+        $('#instructions').text("Guess Lower");
+    }  else {
+        $('#instructions').text("Guess Higher");
+    }  
     } else if (this.difference() < 10) {
         return "You\'re burning up!";
     } else if (this.difference() < 25) {
@@ -74,3 +87,43 @@ Game.prototype.provideHint = function() {
     shuffle(hintArr);
     return hintArr;
 }
+
+
+function submitAGuess(){
+    var guess = $('#player-input').val();
+    $('#player-input').val("");
+    var output = game.playersGuessSubmission(parseInt(guess,10));
+    console.log(output);
+};
+   
+
+$(document).ready(function(){
+
+    var game = new Game();
+
+    $('#submit').click(function(event){
+        submitAGuess(game);
+    })
+    $('#player-input').keypress(function(event){
+        if(event.which === 13){
+            submitAGuess(game);
+        }
+    })
+
+    $('#reset').click(function(e){
+        game = new Game();
+        $('#main-header').text("Play the Guessing Game!");
+        $('#instructions').text('Guess a number between 1-100!');
+        $('#hint', '#submit').prop('disabled', false);
+    })
+
+    $('#hint').click(function(e){
+        var hint = game.provideHint();
+        $('#main-header').text("The winning number is one of the following: " + hint);
+    })
+
+
+})
+
+
+
